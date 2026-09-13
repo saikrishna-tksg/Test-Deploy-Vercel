@@ -3,276 +3,462 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Your Product</title>
+<title>E-learning | AgentforcePOC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #0f0f14;
-    --bg-alt: #16161d;
-    --text: #f4f4f6;
-    --muted: #9a9aa5;
-    --accent: #6d5efc;
-    --accent-hover: #5a4de0;
-    --border: #26262f;
+    --text: #222222;
+    --red: #cc0000;
+    --border: #e0e0e0;
+    --light-gray: #f2f2f2;
+    --black: #222222;
   }
 
   * { box-sizing: border-box; }
 
   body {
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    background: var(--bg);
+    font-family: 'Inter', system-ui, sans-serif;
     color: var(--text);
-    line-height: 1.6;
+    font-size: 16px;
+    line-height: 1.5;
   }
 
   a { color: inherit; text-decoration: none; }
 
-  .container {
-    max-width: 1100px;
+  .wrap {
+    max-width: 1280px;
     margin: 0 auto;
     padding: 0 24px;
   }
 
-  header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 24px 0;
+  /* Utility bar */
+  .utility-bar {
     border-bottom: 1px solid var(--border);
   }
-
-  .logo {
+  .utility-bar .wrap {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 28px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 14px;
+  }
+  .utility-bar .brand {
+    margin-right: auto;
     font-weight: 700;
-    font-size: 1.25rem;
-    letter-spacing: -0.02em;
+    font-size: 22px;
+    letter-spacing: 1.3px;
   }
+  .utility-bar span { display: flex; align-items: center; gap: 6px; cursor: pointer; }
 
-  nav {
+  /* Main nav */
+  .main-nav {
+    border-bottom: 1px solid var(--border);
+  }
+  .main-nav .wrap {
     display: flex;
+    align-items: center;
     gap: 32px;
+    padding: 16px 24px;
   }
-
-  nav a {
-    color: var(--muted);
-    font-size: 0.95rem;
-    transition: color 0.2s ease;
+  .main-nav .logo {
+    font-weight: 700;
+    font-size: 20px;
+    letter-spacing: 1px;
+    margin-right: 12px;
   }
-
-  nav a:hover { color: var(--text); }
-
-  .btn {
-    display: inline-block;
-    padding: 12px 24px;
-    border-radius: 8px;
-    font-weight: 600;
-    font-size: 0.95rem;
-    cursor: pointer;
-    transition: background 0.2s ease, transform 0.15s ease;
-    border: none;
-  }
-
-  .btn-primary {
-    background: var(--accent);
-    color: #fff;
-  }
-
-  .btn-primary:hover {
-    background: var(--accent-hover);
-    transform: translateY(-1px);
-  }
-
-  .btn-outline {
-    background: transparent;
-    color: var(--text);
-    border: 1px solid var(--border);
-  }
-
-  .btn-outline:hover {
-    border-color: var(--accent);
-  }
-
-  .hero {
-    padding: 120px 0 100px;
-    text-align: center;
-  }
-
-  .eyebrow {
-    display: inline-block;
-    padding: 6px 14px;
-    border-radius: 999px;
-    background: var(--bg-alt);
-    border: 1px solid var(--border);
-    color: var(--muted);
-    font-size: 0.85rem;
-    margin-bottom: 24px;
-  }
-
-  h1 {
-    font-size: clamp(2.2rem, 5vw, 3.75rem);
-    font-weight: 800;
-    letter-spacing: -0.03em;
-    margin: 0 0 20px;
-  }
-
-  .hero p {
-    max-width: 560px;
-    margin: 0 auto 36px;
-    color: var(--muted);
-    font-size: 1.1rem;
-  }
-
-  .hero-actions {
+  .main-nav ul {
+    list-style: none;
     display: flex;
+    gap: 28px;
+    margin: 0;
+    padding: 0;
+    flex: 1;
+  }
+  .main-nav li { font-size: 16px; cursor: pointer; }
+  .main-nav li.active {
+    background: var(--red);
+    color: #fff;
+    padding: 8px 16px;
+    font-weight: 500;
+    border-radius: 2px;
+  }
+
+  /* Breadcrumb */
+  .breadcrumb .wrap {
+    padding: 14px 24px;
+    font-size: 14px;
+    color: #555;
+  }
+  .breadcrumb a { color: #555; }
+  .breadcrumb a:hover { text-decoration: underline; }
+  .breadcrumb .sep { margin: 0 6px; color: #999; }
+
+  /* Hero */
+  .hero {
+    position: relative;
+    height: 320px;
+    background: linear-gradient(180deg, rgba(0,0,0,0.25), rgba(0,0,0,0.45)),
+                url('https://agentforce-react-poc.vercel.app/hero-e-learning.jpg') center/cover no-repeat;
+    display: flex;
+    align-items: flex-end;
+  }
+  .hero h1 {
+    color: #fff;
+    font-size: 40px;
+    font-weight: 700;
+    margin: 0;
+    padding: 20px 28px;
+    background: rgba(0,0,0,0.35);
+    display: inline-block;
+  }
+  .hero .wrap { width: 100%; padding-bottom: 32px; }
+
+  /* Article */
+  main .content-wrap {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 56px 24px 72px;
+  }
+  main h2 {
+    font-size: 26px;
+    font-weight: 700;
+    margin: 40px 0 16px;
+  }
+  main h2:first-child { margin-top: 0; }
+  main p {
+    margin: 0 0 18px;
+    color: var(--text);
+  }
+  main a.inline-link {
+    color: var(--red);
+    text-decoration: underline;
+  }
+
+  /* Learn more */
+  .learn-more {
+    background: var(--light-gray);
+    padding: 56px 24px;
+  }
+  .learn-more h2 {
+    text-align: center;
+    font-size: 26px;
+    font-weight: 700;
+    margin: 0 0 32px;
+  }
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
     gap: 16px;
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+  .card {
+    background: #fff;
+    border: 0.8px solid var(--border);
+    padding: 24px;
+    min-height: 130px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+    transition: box-shadow 0.2s ease;
+  }
+  .card:hover { box-shadow: 0 4px 14px rgba(0,0,0,0.08); }
+  .card h3 {
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0;
+  }
+  .card .arrow {
+    align-self: flex-end;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--black);
+    color: #fff;
+    display: flex;
+    align-items: center;
     justify-content: center;
+    font-size: 16px;
+    margin-top: 16px;
+  }
+
+  /* Footer */
+  footer {
+    position: relative;
+    padding-top: 56px;
+  }
+  .back-to-top {
+    position: absolute;
+    top: -22px;
+    right: 24px;
+    width: 44px;
+    height: 44px;
+    background: var(--red);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    cursor: pointer;
+  }
+  .footer-links {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    padding: 0 24px 40px;
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+  .footer-links ul { list-style: none; margin: 0; padding: 0; }
+  .footer-links li {
+    font-weight: 700;
+    font-size: 15px;
+    padding: 6px 0;
+    cursor: pointer;
+  }
+
+  .footer-social {
+    border-top: 1px solid var(--border);
+    padding: 28px 24px;
+  }
+  .footer-social .wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .footer-social p { margin: 0 0 12px; font-weight: 500; }
+  .social-icons {
+    display: flex;
+    gap: 12px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .social-icons li {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--black);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .social-icons svg { width: 16px; height: 16px; fill: #fff; }
+  .footer-meta-links {
+    list-style: none;
+    display: flex;
+    gap: 24px;
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+    color: #555;
+  }
+
+  .footer-legal {
+    border-top: 1px solid var(--border);
+    padding: 20px 24px;
+    font-size: 13px;
+    color: #555;
+  }
+  .footer-legal .wrap {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .footer-legal p { margin: 2px 0; }
+  .footer-legal ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    margin: 0;
+    padding: 0;
     flex-wrap: wrap;
   }
 
-  .features {
-    padding: 80px 0;
-    border-top: 1px solid var(--border);
+  @media (max-width: 900px) {
+    .main-nav ul { flex-wrap: wrap; gap: 16px; }
+    .card-grid { grid-template-columns: repeat(2, 1fr); }
+    .footer-links { grid-template-columns: repeat(2, 1fr); }
   }
-
-  .features h2 {
-    text-align: center;
-    font-size: 2rem;
-    margin-bottom: 12px;
-    letter-spacing: -0.02em;
-  }
-
-  .features > .container > p {
-    text-align: center;
-    color: var(--muted);
-    margin-bottom: 56px;
-  }
-
-  .feature-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 24px;
-  }
-
-  .feature-card {
-    background: var(--bg-alt);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 28px;
-  }
-
-  .feature-icon {
-    width: 40px;
-    height: 40px;
-    border-radius: 10px;
-    background: rgba(109, 94, 252, 0.15);
-    color: var(--accent);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.2rem;
-    margin-bottom: 16px;
-  }
-
-  .feature-card h3 {
-    margin: 0 0 8px;
-    font-size: 1.1rem;
-  }
-
-  .feature-card p {
-    margin: 0;
-    color: var(--muted);
-    font-size: 0.95rem;
-  }
-
-  .cta {
-    padding: 80px 0;
-    text-align: center;
-    border-top: 1px solid var(--border);
-  }
-
-  .cta h2 {
-    font-size: 2rem;
-    margin-bottom: 12px;
-    letter-spacing: -0.02em;
-  }
-
-  .cta p {
-    color: var(--muted);
-    margin-bottom: 32px;
-  }
-
-  footer {
-    padding: 32px 0;
-    border-top: 1px solid var(--border);
-    text-align: center;
-    color: var(--muted);
-    font-size: 0.9rem;
-  }
-
-  @media (max-width: 640px) {
-    nav { display: none; }
-    .hero { padding: 80px 0 60px; }
+  @media (max-width: 560px) {
+    .card-grid { grid-template-columns: 1fr; }
+    .hero h1 { font-size: 28px; }
   }
 </style>
 </head>
 <body>
 
-  <header class="container">
-    <div class="logo">Product</div>
-    <nav>
-      <a href="#features">Features</a>
-      <a href="#pricing">Pricing</a>
-      <a href="#contact">Contact</a>
-    </nav>
-    <a href="#get-started" class="btn btn-outline">Sign in</a>
-  </header>
+  <div class="utility-bar">
+    <div class="wrap">
+      <span>Login</span>
+      <span>United States | EN</span>
+      <span>Contact us</span>
+      <span>Search</span>
+    </div>
+  </div>
 
-  <section class="hero container">
-    <span class="eyebrow">🚀 Now available</span>
-    <h1>Build something great, faster than ever</h1>
-    <p>A simple, powerful starting point for your next idea. Clean design, fast performance, zero setup.</p>
-    <div class="hero-actions">
-      <a href="#get-started" class="btn btn-primary">Get started free</a>
-      <a href="#features" class="btn btn-outline">Learn more</a>
+  <div class="main-nav">
+    <div class="wrap">
+      <a href="/" class="logo">AGENTFORCEPOC</a>
+      <ul>
+        <li>Products &amp; Solutions</li>
+        <li>Services</li>
+        <li>Markets</li>
+        <li>Sustainability</li>
+        <li class="active">Company</li>
+        <li>News &amp; Events</li>
+        <li>Careers</li>
+      </ul>
+    </div>
+  </div>
+
+  <nav class="breadcrumb">
+    <div class="wrap">
+      <a href="/">Home</a><span class="sep">&gt;</span>
+      <a href="/">Company</a><span class="sep">&gt;</span>
+      <a href="/">Our People and Culture</a><span class="sep">&gt;</span>
+      <a href="/">Integrity</a><span class="sep">&gt;</span>
+      <a href="/integrity/training-and-communications">Training and Communications</a><span class="sep">&gt;</span>
+      <span>E-learning</span>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="wrap">
+      <h1>E-learning</h1>
     </div>
   </section>
 
-  <section class="features" id="features">
-    <div class="container">
-      <h2>Everything you need</h2>
-      <p>A focused set of features that just work.</p>
-      <div class="feature-grid">
-        <div class="feature-card">
-          <div class="feature-icon">⚡</div>
-          <h3>Fast by default</h3>
-          <p>Optimized from the ground up so your users never wait.</p>
+  <main>
+    <div class="content-wrap">
+      <h2>Online courses allow learners to take training according to their schedule</h2>
+      <p>Highly engaging and interactive e-learning is available to over 40,000 employees around the world, ensuring education delivery through computer tracking and certification.</p>
+      <p>E-learning courses on the AgentforcePOC Code of Conduct and Anti-Bribery and Corruption are also required for all email account holders worldwide (over 40,000 employees) with completion tracked and certified.</p>
+      <p>The latest mandatory e-learning module on FCPA and anti-bribery and Corruption is available in more than 30 languages. Our e-learning is tailored to terms used as part of AgentforcePOC. Targeted courses are mandatory for employees with responsibilities in specific risk areas including integrity leadership, antitrust, and export credit agencies.</p>
+      <p>Our e-learning courses are highly engaging and interactive, allowing all e-learners to take training according to their own schedule. It allows employees the opportunity to think about and digest important information at their own pace.</p>
+      <p>A Compliance and Anti-Bribery online training for AgentforcePOC Channel Business Partners is available through a course Self-Registration process as well.</p>
+
+      <h2>Important note</h2>
+      <p>AgentforcePOC has partnered with Navex Global to provide e-learning solutions to our employees and external stakeholders. If you have received an e-mail from <a class="inline-link" href="mailto:global-support.elearning@agentforcepoc.com">global-support.elearning@agentforcepoc.com</a>, this is a legitimate e-mail from our service provider, and you are advised to follow the link to access your integrity e-learning module.</p>
+      <p>Single Sign-on (SSO) is applicable for employees with active directories account only: Click <a class="inline-link" href="#">here</a> to access the LMS. This will take you to the Microsoft Sign in page where you need to enter your AgentforcePOC login credentials. You will then be directed to the LMS home page automatically without the need to sign in again with your username and password.</p>
+      <p>Third party learners and employees without active directories account can access the LMS via the below link and sign in with their username and password provided in the enrollment notification: <a class="inline-link" href="https://agentforcepoc.lms.navexglobal.eu">https://agentforcepoc.lms.navexglobal.eu</a></p>
+      <p>You may write to <a class="inline-link" href="mailto:global-support.elearning@agentforcepoc.com">global-support.elearning@agentforcepoc.com</a> if you have any queries.</p>
+    </div>
+
+    <section class="learn-more">
+      <h2>Learn more</h2>
+      <div class="card-grid">
+        <a class="card" href="/integrity/commitment">
+          <h3>Commitment</h3>
+          <span class="arrow">&#8250;</span>
+        </a>
+        <a class="card" href="/integrity/standards">
+          <h3>Standards</h3>
+          <span class="arrow">&#8250;</span>
+        </a>
+        <a class="card" href="/integrity/reporting-channels">
+          <h3>Reporting channels</h3>
+          <span class="arrow">&#8250;</span>
+        </a>
+        <a class="card" href="/integrity/training-and-communications">
+          <h3>Training and Communications</h3>
+          <span class="arrow">&#8250;</span>
+        </a>
+        <a class="card" href="/integrity/resolving-issues">
+          <h3>Resolving issues</h3>
+          <span class="arrow">&#8250;</span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">&#8963;</div>
+
+    <div class="footer-links">
+      <ul>
+        <li>Contact Us &rsaquo;</li>
+        <li>Jobs &rsaquo;</li>
+      </ul>
+      <ul>
+        <li>Supplying &rsaquo;</li>
+        <li>Cybersecurity Alerts &rsaquo;</li>
+      </ul>
+      <ul>
+        <li>About Us &rsaquo;</li>
+        <li>Country and Regional Information &rsaquo;</li>
+      </ul>
+      <ul>
+        <li>Events &amp; Webinars &rsaquo;</li>
+        <li>Energy Portal (AgentforcePOC) &rsaquo;</li>
+      </ul>
+    </div>
+
+    <div class="footer-social">
+      <div class="wrap">
+        <div>
+          <p>Follow us</p>
+          <ul class="social-icons">
+            <li title="Facebook"><svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12"/></svg></li>
+            <li title="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2c2.7 0 3 0 4.1.1 1.1 0 1.8.2 2.2.4.5.2.9.5 1.3.9.4.4.6.7.9 1.3.2.4.4 1.1.4 2.2.1 1.1.1 1.4.1 4.1s0 3-.1 4.1c0 1.1-.2 1.8-.4 2.2-.2.5-.5.9-.9 1.3-.4.4-.7.6-1.3.9-.4.2-1.1.4-2.2.4-1.1.1-1.4.1-4.1.1s-3 0-4.1-.1c-1.1 0-1.8-.2-2.2-.4-.5-.2-.9-.5-1.3-.9-.4-.4-.6-.7-.9-1.3-.2-.4-.4-1.1-.4-2.2C2 15 2 14.7 2 12s0-3 .1-4.1c0-1.1.2-1.8.4-2.2.2-.5.5-.9.9-1.3.4-.4.7-.6 1.3-.9.4-.2 1.1-.4 2.2-.4C9 2 9.3 2 12 2m0 1.8c-2.7 0-3 0-4 .1-.9 0-1.4.2-1.7.3-.4.2-.7.3-1 .6-.3.3-.5.6-.6 1-.1.3-.3.8-.3 1.7-.1 1-.1 1.3-.1 4s0 3 .1 4c0 .9.2 1.4.3 1.7.2.4.3.7.6 1 .3.3.6.5 1 .6.3.1.8.3 1.7.3 1 .1 1.3.1 4 .1s3 0 4-.1c.9 0 1.4-.2 1.7-.3.4-.2.7-.3 1-.6.3-.3.5-.6.6-1 .1-.3.3-.8.3-1.7.1-1 .1-1.3.1-4s0-3-.1-4c0-.9-.2-1.4-.3-1.7-.2-.4-.3-.7-.6-1-.3-.3-.6-.5-1-.6-.3-.1-.8-.3-1.7-.3-1-.1-1.3-.1-4-.1M12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10m0 1.8a3.2 3.2 0 1 0 0 6.4 3.2 3.2 0 0 0 0-6.4m5.2-3.4a1.2 1.2 0 1 1 0 2.4 1.2 1.2 0 0 1 0-2.4"/></svg></li>
+            <li title="X"><svg viewBox="0 0 24 24"><path d="M18.9 2h3.3l-7.2 8.2L23.4 22h-6.7l-5.2-6.8L5.5 22H2.2l7.7-8.8L1.5 2h6.9l4.7 6.3L18.9 2zm-1.2 18h1.8L7.4 4h-2l12.3 16z"/></svg></li>
+            <li title="YouTube"><svg viewBox="0 0 24 24"><path d="M22 12s0-3.2-.4-4.7c-.2-.9-.9-1.6-1.8-1.8C18.3 5 12 5 12 5s-6.3 0-7.8.5c-.9.2-1.6.9-1.8 1.8C2 8.8 2 12 2 12s0 3.2.4 4.7c.2.9.9 1.6 1.8 1.8C5.7 19 12 19 12 19s6.3 0 7.8-.5c.9-.2 1.6-.9 1.8-1.8.4-1.5.4-4.7.4-4.7zM10 15V9l5.2 3-5.2 3z"/></svg></li>
+            <li title="LinkedIn"><svg viewBox="0 0 24 24"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.1c.5-1 1.9-2 3.9-2 4.2 0 5 2.7 5 6.4V21h-4v-5.3c0-1.3 0-2.9-1.8-2.9s-2 1.4-2 2.8V21H9z"/></svg></li>
+            <li title="TikTok"><svg viewBox="0 0 24 24"><path d="M16.6 2h-3.2v13.6a2.9 2.9 0 1 1-2-2.8v-3.3a6.2 6.2 0 1 0 5.2 6.1V9c1.2.9 2.7 1.4 4.4 1.4V7.2c-2.4 0-4.4-2.1-4.4-4.7z"/></svg></li>
+          </ul>
         </div>
-        <div class="feature-card">
-          <div class="feature-icon">🔒</div>
-          <h3>Secure</h3>
-          <p>Built with best practices to keep your data safe.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">🎨</div>
-          <h3>Beautiful design</h3>
-          <p>A polished, modern interface out of the box.</p>
-        </div>
+        <ul class="footer-meta-links">
+          <li>Our locations</li>
+          <li>Sitemap</li>
+        </ul>
       </div>
     </div>
-  </section>
 
-  <section class="cta" id="get-started">
-    <div class="container">
-      <h2>Ready to get started?</h2>
-      <p>Join thousands of users already building with us.</p>
-      <a href="#" class="btn btn-primary">Create your free account</a>
-    </div>
-  </section>
-
-  <footer id="contact">
-    <div class="container">
-      &copy; 2026 Product. All rights reserved.
+    <div class="footer-legal">
+      <div class="wrap">
+        <div>
+          <p>AgentforcePOC Website</p>
+          <p>&copy;AgentforcePOC Ltd 2026. All rights reserved</p>
+        </div>
+        <ul>
+          <li>Unsubscribe</li>
+          <li>Provider information</li>
+          <li>Privacy notice</li>
+          <li>Cookie &amp; Settings</li>
+          <li>Sitemap</li>
+        </ul>
+      </div>
     </div>
   </footer>
+
+  <script type='text/javascript'>
+    function initEmbeddedMessaging() {
+      try {
+        embeddedservice_bootstrap.settings.language = 'en_US'; // For example, enter 'en' or 'en-US'
+
+        embeddedservice_bootstrap.init(
+          '00DgL000006RFxl',
+          'Navigation_Agent_Deployment',
+          'https://orgfarm-1f5ac668eb-dev-ed.develop.my.site.com/ESWNavigationAg1789157199637',
+          {
+            scrt2URL: 'https://orgfarm-1f5ac668eb-dev-ed.develop.my.salesforce-scrt.com'
+          }
+        );
+      } catch (err) {
+        console.error('Error loading Embedded Messaging: ', err);
+      }
+    }
+  </script>
+  <script type='text/javascript' src='https://orgfarm-1f5ac668eb-dev-ed.develop.my.site.com/ESWNavigationAg1789157199637/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
 
 </body>
 </html>
